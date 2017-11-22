@@ -3,7 +3,6 @@ from pytube import YouTube
 import pandas as pd
 import numpy as np
 import skvideo.io
-import cv2
 import os
 import ipdb
 from skvideo.io import vwrite,vreader
@@ -17,12 +16,12 @@ def download_and_process_video(row):
     save_path = save_path.replace('mp4','avi')
     start = row['Start']
     end = row['End']
-    print video_id
+    print(video_id)
     if not os.path.exists( save_path ):
         if not os.path.exists( full_path ):
             try:
                 youtube = YouTube("https://www.youtube.com/watch?v="+video_id)
-                print 'downloading', video_id
+                print('downloading', video_id)
             except:
                 return
             try:
@@ -31,7 +30,7 @@ def download_and_process_video(row):
                 ipdb.set_trace()
             video.download('videos')
             os.rename(os.path.join('videos',video.default_filename), full_path )
-        print 'converting', video_id
+        print('converting', video_id)
         cap = vreader(full_path)
         frames = []
         frame_count = 0

@@ -1,0 +1,8 @@
+version: '3'
+services:
+  kalyfabdalla_s2vt:
+    build: .
+    volumes:
+     - ./msvd/:/usr/src/
+  redis:
+    image: "kalyfabdalla_s2vt"
